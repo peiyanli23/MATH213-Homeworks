@@ -1,0 +1,243 @@
+\documentclass{article}
+%%%%%%%%%%%%%
+% Loads packages
+%%%%%%%%%%%%%
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{geometry} %package needed to set margins
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{listings}% http://ctan.org/pkg/listings
+\lstset{
+basicstyle=\ttfamily,
+mathescape
+}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\textbf{Homework 5}}
+\lhead{Math 213, Fall 2024}
+\rhead{Due Sunday, 10/6 at 11:59pm}
+%%%%%%%%%%%%%
+% Sets margins
+%%%%%%%%%%%%%
+\newgeometry{left=1.5in,right=1in,top=1in,bottom=1in}
+\setlength\headsep{3pt}
+%%%%%%%%%%%%%
+% Creates problem and solution environments
+%%%%%%%%%%%%%
+% Solution Environment
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+% Problem Environment
+\newenvironment{problem}[1]
+{\begin{mdframed}[default]
+\textbf{Problem #1:}
+}
+{\end{mdframed}
+}
+%%%%%%%%%%%
+% Custom Commands
+%%%%%%%%%%%
+\newcommand{\gOne}{\cellcolor{green!50!white} 1}
+\newcommand{\rZero}{\cellcolor{red!50!white} 0}
+\begin{document}
+\begin{problem}{\S 6.3 - 16}
+How many subsets with an odd number of elements does a set with 10 elements have?
+
+Solution:
+
+\[T=C(10,1)+C(10,3)+C(10,5)+C(10,7)+C(10,9)\]
+\[=\frac{10!}{1!\cdot(9!)}+\frac{10!}{3!\cdot(7!)}+\frac{10!}{5!\cdot(5!)}+\frac{10!}{7!\cdot(3!)}\frac{10!}{9!\cdot(1!)}\]
+\[=10+120+252+120+10=512\]
+\end{problem}
+\begin{problem}{\S 6.3 - 20}
+How many bit strings of length 10 have
+\begin{enumerate}
+\item[(a)] exactly three ``0''s?
+\item[(b)] more ``0''s than ``1''s?
+\item[(c)] at least seven ``1''s?
+\item[(d)] at least three ``1''s?
+
+Solution:
+
+(a) \[T=C(10,3)=\frac{10!}{3!\cdot(10-3)!}=120\]
+(b) \[T=C(10,10)+C(10,9)+C(10,8)+C(10,7)+C(10,6)\]
+\[=\frac{10!}{10!\cdot(10-10)!}+\frac{10!}{9!\cdot(10-9)!}+\frac{10!}{8!\cdot(10-8)!}+\frac{10!}{7!\cdot(10-7)!}+\frac{10!}{6!\cdot(10-6)!}=386\]
+(c)\[T=C(10,7)+C(10,8)+C(10,9)+C(10,10)\]
+\[=\frac{10!}{10!\cdot(10-10)!}+\frac{10!}{9!\cdot(10-9)!}+\frac{10!}{8!\cdot(10-8)!}+\frac{10!}{7!\cdot(10-7)!}=176\]
+(d)\[T=2^{10}-C(10,1)-C(10,2)-C(10,3)=968\]
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 6.3 - 24}
+How many ways are there for ten women and six men to stand in a line so that no two
+men stand next to each other?
+
+Solution:
+
+Set 
+\[T=P(11,6)\cdot P(10,10)={10!}\cdot \frac{11!}{(11-6)!}= 1207084032000\]
+\end{problem}
+\begin{problem}{\S 6.3 - 42}
+Find a formula for the number of ways to seat $r$ of $n$ people around a circular
+table, where seatings are considered the same if every person has the same two
+neighbors without regard to which side these neighbors are sitting on.
+
+Solution:
+
+For $n=1$ or $n=2$, there is only one way to seat, for $n\geq 3$, the way is \[C(n,r)\cdot\frac{(r-1)!}{2} \]
+\end{problem}
+\begin{problem}{\S 6.4 - 10}
+Give a formula for the coefficient of $x^k$ in the expansion of $(x+1/x)^{100}$,
+where $k$ is an integer.
+
+Solution:
+
+Set the formula to be $(x+y)^{100}$, where $y=1/x$, than the expansion can be expressed by ${100 \choose j}x^{100-j}y^{j}$. Than substitute ${100 \choose j}x^{100-j}(1/x)^{j}={100 \choose j}x^{100-2j}$, since $x^{100-2j}=x^k$, $k=100-2j$, $j={(100-k)}/2$.
+Now, we get \[{100 \choose \frac{100-k}{2}}x^k\], where\[{100 \choose \frac{100-k}{2}}\] is coefficient.\[=\frac{100!}{(\frac{100-k}{2})!\cdot(100-\frac{100-k}{2})!}\]
+
+\end{problem}
+\begin{problem}{\S 6.4 - 12}
+The row of Pascal's triangle containing the binomia coefficients ${ 10 \choose k}$,
+for $0 \leq k \leq 10$, is:
+\[1~~10~~45~~120~~210~~252~~210~~120~~45~~10~~1 \]
+Use Pascal's identity to produce the row immediately following this row in Pascal's
+triangle.
+
+Solution:
+
+Add adjacent coefficient of the last row:
+\[1~~11~~55~~165~~330~~462~~462~~330~~165~~55~~11~~1\]
+\end{problem}
+\begin{problem}{\S 6.4 - 22}
+Prove the identity ${n \choose r}{r \choose k} = {n \choose k}{n-k \choose r-k}$,
+whenever $n, r,$ and $k$ are non-negative integers with $r \leq n$ and $k \leq r$,
+\begin{enumerate}
+\item[(a)] using a combinatorial argument.
+\item[(b)] using an argument based on the formula for the number of $r$-
+combinations of a set with $n$ elements.
+
+Solution:
+
+(a) The left-hand side First, select an r-element subset from an n-element set $S$. This can be done in ${n \choose r}$ ways.
+Then, from this r-element subset, select a k-element subset. This can be done in 
+${r \choose k}$ ways.
+Total ways: ${n \choose r}{r \choose k}$.
+The right hand side first selected an k-element subset from n-element set represented as ${n \choose k}$, than choose $r-k$ elements in the remaining $n-k$ elements set which forms a set $r$
+Both of choose a subset A with k elements and another, disjoint, subset with r - k elements.
+
+
+(b)\[Left side = \frac{n!}{r!(n-r)!}\cdot\frac{r!}{k!(r-k)!}=\frac{n!}{k!(n-r)!(r-k)!}\]
+\[Right side = \frac{n!}{k!(n-k)!}\cdot\frac{(n-k)!}{(r-k)!(n-r)!}=\frac{n!}{k!(n-r)!(r-k)!}\]
+
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 6.4 - 27(a)}
+Prove the \textbf{hockeystick identity}
+\[ \sum_{k=0}^r {n+k \choose k} = {n + r + 1 \choose r } \]
+whenever $n$ and $r$ are positive integers, using a combinatorial argument.
+
+Solution:
+
+Think about putting $r$ to $n+2$ boxes, there are \[{n+2+r-1\choose r}={n+r+1 \choose r}\] 
+Which is the right side.
+
+Then, we seperate $n+2$ boxes into $1$ and $n+1$ boxes. Then, we want to put $0\leq k \leq r$ into $n+1$ boxes which is\[{k+n+1-1 \choose k}={k+n \choose n}\]
+There remaining $1$ box, which should put in the remaining $r-k$ balls in it. As the condition we choose a $k$ to put into the first $n+1$ boxes, there is only one way to put $r-k$ in to the remaining one.
+So, the total way to make it is \[{k+n\choose k}\cdot 1={n+k \choose k}\]
+
+Then, since the $k$ could change, that means, all the possible combination for putting $r$ into $n+2$ boxes equals to the sum of putting different $k$ from $0$ to $r$ into $n+1$ boxes, which is the sum:
+\[\sum_{k=0}^r{n+k \choose k}={n+r+1 \choose r}\]
+And it is the hockeystick identity.
+
+
+\end{problem}
+\begin{problem}{\S 6.5 - 10(a,c,d)}
+A croissant shop has plain croissants, cherry croissants, chocolate croissants,
+almond croissants, apple croissants, and broccoli croissants. How many ways are
+there to choose
+\begin{enumerate}
+\item[(a)] a dozen croissants?
+\item[(c)] two dozen croissants with at least two of each kind?
+\item[(d)] two dozen croissants with no more than two broccoli croissants?
+\end{enumerate}
+
+Solution:
+
+(a) \[{6+12-1 \choose 12}=6188\]
+
+(c) Since two dozen, if we pick each at least $2$, we will get $12$ in total, which is one dozen, and other dozen we can choose randomly, which will have: \[{12+6-1 \choose 12}=6188\]
+
+(d) For the case have at least three broccoli croissant, there are \[{6+21-1 \choose 21}\], for all case there are \[{6+24-1 \choose 24}\], The total number relevant to the question is: \[{6+24-1\choose 24}-{6+21-1\choose 21}=52975\]
+
+\end{problem}
+\begin{problem}{\S 6.5 - 20}
+How many solutions are there to the inequality
+\[ x_1 + x_2 + x_3 \leq 11, \]
+where $x_1, x_2,$ and $x_3$ are non-negative integers?
+
+Solution:
+
+We can change it into $x_1+x_2+x_3+x_4=11$ and we put $11$ one into each box, than:
+\[{11+4-1 \choose 11}=364\]
+
+\end{problem}
+\begin{problem}{\S 6.5 - 26}
+How many positive integers less than $1,000,000$ have exactly one digit equal to
+$9$ and have a sum of digits equal to 13?
+
+Solution:
+
+Since there are one digit equal to $9$, and sum of all digit should be $13$, there are $4$ ones we can put randomly, and since the number is less than 1000000, there should be $6$ digit for these numbers.
+Except the one digit already assigned to $9$, there are $5$ digits. The combinations of those $5$ digits are \[{5+4-1 \choose 4}=70\] and since there are $6$ choice for positioning the $9$ in six digits, there are $6*70=420$ in total.
+
+\end{problem}
+\begin{problem}{\S 6.5 - 46}
+A shelf holds 12 books in a row. How many ways are there to choose five books so
+that no two adjacent books are chosen?
+
+We first place $5$ books there and put $4$ in between, and there remaining $3$ books, than there are $6$ positions we can position it.
+So, there are \[{6+3-1 \choose 3}=56\]
+
+\end{problem}
+\begin{problem}{\S 7.1 - 10}
+What is the probability that a five-card poker hand contains the two of diamonds
+and the three of spades?
+
+Solution:
+
+Since 2 of dimond and 3 of spades are fixed, we randomly choose rest 3 cards.
+\[P=\frac{{50\choose 3}}{{52\choose 5}}=0.0075\]
+\end{problem}
+\begin{problem}{\S 7.1 - 12}
+What is the probability that a five-card poker hand contains exactly one ace?
+
+Solution:
+Since there are 4 ace in total, and rest of 4 card we can choose randomly from 48 cards remaining.
+\[\frac{4\cdot{48\choose 4}}{{52\choose 5}}\approx0.3\]
+\end{problem}
+\begin{problem}{\S 7.1 - 14}
+What is the probability that a five-card poker hand contains cards of five
+different kinds?
+
+Solution:
+Since there are 4 suits, there are $4^5$ in choosing suits.
+Since there are 13 kinds, there are ${13\choose 5}$ for choosing valid kind.
+So, in total:
+\[\frac{4^5\cdot {13\choose 5}}{{52 \choose 5}}\approx 0.507\]
+\end{problem}
+\begin{problem}{\S 7.1 - 16}
+What is the probability that a five-card poker hand contains a flush, that is, five
+cards of the same suit?
+
+Solution:
+Since there are 4 suits, for same suits, there are $4$ in choosing suits.
+Since there are 13 kinds, there are ${13\choose 5}$ possible combination for each suits.
+So, in total:
+\[\frac{4\cdot{13\choose 5} }{{52\choose 5}}\approx 0.00198\]
+\end{problem}
+\end{document}

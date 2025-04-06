@@ -1,0 +1,290 @@
+\documentclass{article}
+%%%%%%%%%%%%%
+% Loads packages
+%%%%%%%%%%%%%
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{geometry} %package needed to set margins
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{listings}% http://ctan.org/pkg/listings
+\lstset{
+basicstyle=\ttfamily,
+mathescape
+}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\textbf{Homework 3}}
+\lhead{Math 213, Fall 2024}
+\rhead{Due Sunday, 9/15 at 11:59pm}
+%%%%%%%%%%%%%
+% Sets margins
+%%%%%%%%%%%%%
+\newgeometry{left=1.5in,right=1in,top=1in,bottom=1in}
+\setlength\headsep{3pt}
+%%%%%%%%%%%%%
+% Creates problem and solution environments
+%%%%%%%%%%%%%
+% Solution Environment
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+% Problem Environment
+\newenvironment{problem}[1]
+{\begin{mdframed}[default]
+\textbf{Problem #1:}
+}
+{\end{mdframed}
+}
+%%%%%%%%%%%
+% Custom Commands
+%%%%%%%%%%%
+\newcommand{\gOne}{\cellcolor{green!50!white} 1}
+\newcommand{\rZero}{\cellcolor{red!50!white} 0}
+\begin{document}
+\begin{problem}{\S 3.2: 2(a,b,e,f)}
+Determine whether each of these functions is $O(x^2)$:
+\begin{enumerate}
+\item[(a)] $f(x) = 17x + 11$.
+\item[(b)] $f(x) = x^2 + 1000$.
+\item[(e)] $f(x) = 2^x$.
+\item[(f)] $f(x) = \lfloor x \rfloor \cdot \lceil x \rceil$.
+\end{enumerate}
+Solution:
+\item[(a)] Yes
+\item[(b)] Yes
+\item[(e)] No
+\item[(f)] Yes
+\end{problem}
+\begin{problem}{\S 3.2: 8}
+Find the least integer $n$ such that $f(x)$ is $O(x^n)$ for each of these
+functions.
+\begin{enumerate}
+\item[(a)] $f(x) = 2x^2 + x^3\log{x}$.
+\item[(b)] $f(x) = 3x^5 + (\log{x})^4$.
+\item[(c)] $f(x) = (x^4+x^2+1)/(x^4+1)$.
+\item[(d)] $f(x) = (x^3+5\log{x})/(x^4+1)$.
+\end{enumerate}
+
+(a)$2x^2 + x^3\log{x}\leq2x^4+x^4$, so $n=4$
+
+(b)$3x^5 + (\log{x})^4\leq3x^5+x^4$, so $n=5$
+
+(c)$(x^4+x^2+1)/(x^4+1)=1+(x^2)/(x^4+1)$ thus, for big x, it will approaching 1, so $n=0$
+
+(d)$(x^3+5\log{x})/(x^4+1)\leq(x^3+5x)/(x^4+1)$, thus, for large x, it will approaching $1/x$, so $n=-1$
+\end{problem}
+\begin{problem}{\S 3.2: 17}
+Suppose that $f(x)$, $g(x)$, and $h(x)$ are functions such that $f(x)$ is $O(g(x))$
+and $g(x)$ is $O(h(x))$. Show that $f(x)$ is $O(h(x))$.
+
+From the definition of big-O, $f(x)$ is $O(g(x))$ means that $|f(x)|\leq C_1|g(x)|$ for $x\textgreater k_1$, similarly,
+$g(x)$ is $O(h(x))$ means that $|g(x)|\leq C_2|h(x)|$ for $x\textgreater k_2$.
+Than, $|f(x)|\leq C_1|C_2|h(x)||=C|h(x)|$, and this case satisfies when $x \textgreater \max(k_1, k_2)$.
+\end{problem}
+\begin{problem}{\S 3.2: 26}
+Give a big-$O$ estimate for each of these functions. For the function $g$ in your
+estimate $f(x)$ is $O(g(x))$, use a simple function $g$ of the smallest order.
+\begin{enumerate}
+\item[(a)] $f(x) = (n^3+n^2\log{n})(\log{n}+1) + (17\log{n} + 19)(n^3+2)$.
+\item[(b)] $f(x) = (2^n + n^2)(n^3 + 3^n)$.
+\item[(c)] $f(x) = (n^n + n2^n + 5^n)(n!+5^n)$.
+\end{enumerate}
+
+Solution:
+
+(a) $f(x) = (n^3+n^2\log{n})(\log{n}+1) + (17\log{n} + 19)(n^3+2) = n^3\log{n} + n^3 + n^2(\log{n})^2 + n^2\log{n} + 17n^3\log{n}+34\log{n}+19n^3+38$, the most rapid growth is $n^3\log{n}$, thus, is $O(n^3\log{n})$.
+
+(b) $f(x) = (2^n + n^2)(n^3 + 3^n) = n^3\cdot2^n+n^5+6^n+n^2\cdot3^n$, the most rapid growth term is $6^n$, so $O(6^n)$.
+
+(c) $f(x) = (n^n + n2^n + 5^n)(n!+5^n)$, the most rapid term of growth is $n^n\cdot n!$, so $O(n^n\cdot n!)$
+\end{problem}
+\begin{problem}{\S 3.2: 28(a,b,c,d)}
+Determine whether each of the following functions is $\Omega(x)$ and whether it is
+$\Theta(x)$.
+\begin{enumerate}
+\item[(a)] $f(x) = 10$.
+\item[(b)] $f(x) = 3x+7$.
+\item[(c)] $f(x) = x^2 + x + 1$.
+\item[(d)] $f(x) = 5\log{x}$.
+\end{enumerate}
+
+Solution:
+
+(a)$C_1|\leq10|\leq C_2$, so this is $\Theta(1)$, not $\Theta(x)$
+
+(b)$C_1|x|\leq|3x+7|\leq C_2|x|$, so it is $\Theta(x)$. 
+
+(c)$C_1|x^2|\leq |x^2+x+1|\leq C_2|x^2|$, so it is not $\Theta(x)$. 
+
+(d)$C_1|x|\leq|5\log{x}|\leq C_2|x|$, so it is $\Theta(x)$.
+
+\end{problem}
+\begin{problem}{Extra}
+Explain what it means for a function to be
+\begin{enumerate}
+\item[(a)] $O(1)$.
+\item[(b)] $\Omega(1)$.
+\item[(c)] $\Theta(1)$.
+\end{enumerate}
+Solution:
+
+(a)$|f(x)| \leq C$, for $x>k$
+
+(b)$C\leq |f(x)|$, for $x>k$
+
+(c)$C_1\leq |f(x)| \leq C_2$, for $x>\max\{k_1,k_2\}$
+
+\end{problem}
+\begin{problem}{\S 5.1: 4}
+Let $P(n)$ be the statement that $1^3 + 2^3 + \cdots + n^3 = (n(n+1)/2)^2$ for the
+positive integer $n$.
+\begin{enumerate}
+\item[(a)] What is the statement $P(1)$?
+\item[(b)] Show that $P(1)$ is true, completing the basis step of the proof.
+\item[(c)] What is the inductive hypothesis?
+\item[(d)] What do you need to prove in the inductive step?
+\item[(e)] Complete the inductive step, identifying where you use the inductive
+hypothesis.
+\item[(f)] Explain why these steps show that this formula is true whenever $n$
+is a positive integer.
+\end{enumerate}
+
+Solution:
+
+(a)$P(1)=1^3=(1\cdot (1+1)/2)^2$
+
+(b)$1^3=(1\cdot (1+1)/2)^2$, The left side is equals to the right side.
+
+(c)Inductive hypothesis is 
+\[1^3+2^3+3^3+\cdot \cdot \cdot +m^3=(m(m+1)/2)^2\]
+
+(d)we should prove for $m\textgreater1$ if $P(m)$ is true, than $P(m+1)$ must be true.
+\[(1^3+2^3+3^3+\cdot \cdot \cdot +m^3)+(m+1)^3=((m+1)(m+2)/2)^2\]
+
+(e)\[\left( \frac{m(m+1)}{2}\right)^2+(m+1)^3=(m+1)^2\left(\left(\frac{m}{2}\right)^2+(m+1)\right)=(m+1)^2\left(\frac{m^2+4m+4}{4}\right)\]
+\[=\left(\frac{(m+1)(m+2)}{2}\right)^2\]
+
+(f)For induction principle when basis step and induction step both satisfies, meaning the proposition is true.
+\end{problem}
+\begin{problem}{\S 5.1: 6}
+Prove that $1 \cdot 1! + 2 \cdot 2! + \cdots + n \cdot n! = (n+1)!-1$ whenever $n$
+is a positive integer.
+
+Proof:
+
+First is the basis step: $P(1)=1\cdot1!=(1+1)!-1=1$
+
+Then do the induction step, let 
+\[P(n)=1 \cdot 1! + 2 \cdot 2! + \cdots + n \cdot n! = (n+1)!-1\]
+then we have
+\[P(n+1)=(1 \cdot 1! + 2 \cdot 2! + \cdots + n \cdot n!) + (n+1)\cdot (n+1)! = ((n+1)+1)!-1\]
+left side:
+\[(n+1)!-1+(n+1)\cdot(n+1)!=(n+1)!(n+2)-1=(n+2)!-1\]
+left side equals to right side.
+And since basis step and induction step are both true, satisfies the induction principle, so this proposition is true.
+
+\end{problem}
+\begin{problem}{\S 5.1: 8}
+Prove that $2 - 2 \cdot 7 + 2 \cdot 7^2 - \cdots + 2(-7)^n = (1-(-7)^{n+1})/4$
+whenever $n$ is a nonnegative integer.
+
+Proof:
+First do the basis step:$P(0)=2\cdot (-7)^0=2=(1-(-7)^{0+1})/4$
+The basis step satisfies.
+
+Then do the induction step let:
+\[P(n)=2 - 2 \cdot 7 + 2 \cdot 7^2 - \cdots + 2(-7)^n = \frac{1-(-7)^{n+1}}{4}\]
+Then:
+\[P(n+1)=(2 - 2 \cdot 7 + 2 \cdot 7^2 - \cdots + 2(-7)^{n}) +2(-7)^{n+1}= \frac{1-(-7)^{(n+1)+1}}{4}\]
+For left side:
+\[=\frac{1-(-7)^{n+1}}{4}+2(-7)^{n+1}=\frac{1-(-7)^{n+1}}{4}+\frac{8(-7)^{n+1}}{4}\]
+\[=\frac{1+7(-7)^{n+1}}{4}=\frac{1-(-7)^{n+1+1}}{4}\]
+left side equals to right side.
+And since basis step and induction step are both true, satisfies the induction principle, so this proposition is true.
+
+\end{problem}
+\begin{problem}{\S 5.1: 20}
+Prove that $3^n < n!$ if $n$ is an integer greater than $6$.
+
+Proof:
+
+First do the basis step:$P(7):(3^7=2187)\textless(7!=5040)$ is true.
+The do the induction step, Let:
+\[P(n): 3^n\textless n!\]
+Then $P(n+1)$:
+\[3^n*3\textless (n+1)3^n \textless(n+1)n!\]
+So it's true.
+
+And since basis step and induction step are both true, satisfies the induction principle, so this proposition is true.
+
+\end{problem}
+\begin{problem}{\S 5.1: 34}
+Prove that $6$ divides $n^3 - n$ whenever $n$ is a nonnegative integer.
+
+Proof:
+
+First do the basis step:$P(0):$, since $0=6*0$,the basis step is true.
+
+Then do the induction step. Suppose $P(n)$: 6 divides $n^3-n$, we should show that
+$P(n+1)$: 6 divides $(n+1)^3-(n+1)$ is true.
+$(n+1)^3-(n+1)=n^3+3n^2+3n+1-n-1=n^3+3n^2+2n=(n^3-n)+3n(n+1)$. 
+To verify if it 6 divides it, we should verify both items in $(n^3-n)+3n(n+1)$ satisfies.
+Since the first item is $n^3-n$, it satisfies. Now focusing on second item: $3n(n+1)$ since $3$ is a multiplier of $6$, we can only verify if $n(n+1)$ is a multiplier of $2$.
+Since $n(n+1)$ for integer $n$ is always even number, it is a multiplier of 2.
+Thus, the induction step is true.
+
+And since basis step and induction step are both true, satisfies the induction principle, so this proposition is true.
+
+
+
+\end{problem}
+\begin{problem}{\S 5.1: 49}
+What is wrong with this ``proof'' that all horses are the same color?
+\vspace{3mm}
+\noindent Let $P(n)$ be the proposition that all the horses in a set of $n$ horses
+are the same color.
+\vspace{2mm}
+\noindent \emph{Basis Step:} Clearly, $P(1)$ is true.
+\vspace{2mm}
+\noindent \emph{Inductive Step:} Assume that $P(k)$ is true, so that all the horses
+in any set of $k$ horses are the same color. Consider any $k+1$ horses: number
+these horses as $1, 2, 3, \dots, k, k+1$. Now the first $k$ of these horses all
+must have the same color. Because the set of the first $k$ horses and the set of
+the last $k$ horses overlap, all $k+1$ must be the same color. This shows that
+$P(k+1)$ is true and finishes the proof by induction.
+\end{problem}
+
+Solution:
+The argument breaks down for k=1, which is crucial for induction to proceed correctly.
+For k=1:
+
+The first set of horses consists of just horse 1, and the second set consists of just horse 2.
+There is no overlap between these two sets because 
+k+1=2, and the first set contains horse 1, while the second set contains horse 2.
+Without overlap, there is no basis to conclude that horses 1 and 2 must be the same color.
+
+\begin{problem}{\S 5.1: 51}
+What is wrong with this ``proof''?
+\vspace{3mm}
+\noindent ``\emph{Theorem}'': For every positive integer $n$, if $x$ and $y$ are
+positive integers with $\textrm{max}(x,y) = n$, then $x = y$.
+\vspace{2mm}
+\noindent \emph{Basis Step:} Suppose that $n=1$. If $\textrm{max}(x,y)=1$ and $x$
+and $y$ are positive integers, we have $x = 1$ and $y = 1$.
+\vspace{2mm}
+\noindent \emph{Inductive Step:} Let $k$ be a positive integer. Assume that
+whenever $\textrm{max}(x,y) = k$ and $x$ and $y$ are positive integers, then $x =
+y$. Now let $\textrm{max}(x,y) = k+1$, where $x$ and $y$ are positive integers.
+Then $\textrm{max}(x-1,y-1) = k$, so by the inductive hypothesis $x-1 = y-1$. It
+follows that $x = y$, completing the inductive step.
+\end{problem}
+
+Solution:
+
+The inductive step makes an incorrect assumption about the behavior of the maximum function when reducing both $x$ and $y$ by $1$
+\end{document}

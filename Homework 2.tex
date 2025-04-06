@@ -1,0 +1,335 @@
+\documentclass{article}
+%%%%%%%%%%%%%
+% Loads packages
+%%%%%%%%%%%%%
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{geometry} %package needed to set margins
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{listings}% http://ctan.org/pkg/listings
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\lstset{
+basicstyle=\ttfamily,
+mathescape
+}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\textbf{Homework 2}}
+\lhead{Math 213, Fall 2024}
+%%%%%%%%%%%%%
+% Sets margins
+%%%%%%%%%%%%%
+\newgeometry{left=1.5in,right=1in,top=1in,bottom=1in}
+\setlength\headsep{3pt}
+%%%%%%%%%%%%%
+% Creates problem and solution environments
+%%%%%%%%%%%%%
+% Solution Environment
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+% Problem Environment
+\newenvironment{problem}[1]
+{\begin{mdframed}[default]
+\textbf{Problem #1:}
+}
+{\end{mdframed}
+}
+%%%%%%%%%%%
+% Custom Commands
+%%%%%%%%%%%
+\newcommand{\gOne}{\cellcolor{green!50!white} 1}
+\newcommand{\rZero}{\cellcolor{red!50!white} 0}
+\begin{document}
+\begin{problem}{\S 2.3: 2}
+Determine whether $f$ is a function from $\mathbb{Z}$ to $\mathbb{R}$ if
+\begin{enumerate}
+\item[(a)] $f(n) = \pm n$
+\item[(b)] $f(n) = \sqrt{n^2+1}$
+\item[(c)] $f(n) = \frac{1}{n^2-4}$
+
+Solution:
+\item[(a)] is not
+\item[(b)] is
+\item[(c)] is not
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 2.3: 12}
+Determine whether each of these functions from $\mathbb{Z}$ to $\mathbb{Z}$ is one-
+to-one.
+\begin{enumerate}
+\item[(a)] $f(n) = n-1$.
+\item[(b)] $f(n) = n^2+1$.
+\item[(c)] $f(n) = n^3$.
+\item[(d)] $f(n) = \lceil n/2 \rceil$.
+
+Solution:
+\item[(a)] is 
+\item[(b)] is not
+\item[(c)] is 
+\item[(d)] is not
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 2.3: 14(a,b,c,d)}
+Determine whether $f: \mathbb{Z} \times \mathbb{Z} \rightarrow \mathbb{Z}$ is onto
+if
+\begin{enumerate}
+\item[(a)] $f(m,n) = 2m-n$.
+\item[(b)] $f(m,n) = m^2 - n^2$.
+\item[(c)] $f(m,n) = m+n+1$.
+\item[(d)] $f(m,n) = |m| - |n|$.
+
+Solution:
+\item[(a)] is 
+\item[(b)] is not
+\item[(c)] is 
+\item[(d)] is
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 2.3: 20}
+Give an example of a function from $\mathbb{N}$ to $\mathbb{N}$ that is
+\begin{enumerate}
+\item[(a)] one-to-one but not onto.
+\item[(b)] onto but not one-to-one.
+\item[(c)] both onto and one-to-one (but not the identity function).
+\item[(d)] neither one-to-one nor onto.
+
+Solution:
+\item[(a)] $f(x)=2x$
+\item[(b)] $f(x)=\lceil x/2 \rceil$
+\item[(c)] $f(x)=|x|$
+\item[(d)] $f(x)=\lceil x^2/4 \rceil$
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 2.3: 22(a,b)}
+Determine whether each of these functions is a bijection from $\mathbb{R}$ to $\mathbb{R}$.
+\begin{enumerate}
+\item[(a)] $f(x) = -3x + 4$.
+\item[(b)] $f(x) = -3x^2 + 7$.
+
+Solution
+\item[(a)] is
+\item[(b)] is not
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 2.3: 36}
+Find $f \circ g$ and $g \circ f$ where $f(x) = x^2 + 1$ and $g(x) = x+2$ are
+functions from $\mathbb{R}$ to $\mathbb{R}$.
+
+Solution
+
+$f \circ g = (x+2)^2+1$
+
+$g \circ f = x^2+3$
+\end{problem}
+\begin{problem}{\S 2.3: 39}
+Show that the function $f(x) = ax + b$ from $\mathbb{R}$ to $\mathbb{R}$ is
+invertible, where $a$ and $b$ are constants, with $a \neq 0$, and find the inverse
+of $f$.
+
+Solution
+
+inverse y and x:$x=ay+b$,modify this equation $y={(x-b)}/a$
+
+Thus, $f^{-1}={(x-b)}/{a}$
+\end{problem}
+\begin{problem}{\S 2.3: 40(a)}
+Let $f$ be a function from the set $A$ to the set $B$. Let $S$ and $T$ be subsets
+of $A$. Show that $f(S \cup T) = f(S) \cup f(T)$.
+
+Solution:
+
+To show the equation satisfies, we want to show both side are the subset of the other, that is $f(S\cup T)\subseteq f(S)\cup f(T)$ and $f(S)\cup f(T)\subseteq f(S\cup T)$.
+
+First, suppose $x\in f(S\cup T)$, since $f$ is a function $A\rightarrow B$, so as $x$ in the range, it must mapped from element in $S \cup T$. By the definition of union, the element contains in set $S \lor T$. Thus, $x\in f(S) \lor x\in f(T)$. By the definition of union, $x\in f(S)\cup f(T)$, so $f(S\cup T)\subseteq f(S)\cup f(T)$.
+
+Then, suppose $x \in f(S) \cup f(T)$. By the definition of union, $x\in f(S) \lor x\in f(T)$. And since $f$ is a function $A\rightarrow B$, so as $x$ in the range, it must mapped from element in $S \lor T$. By the definition of union, $S \lor T$ can be written as $S \cup T$. So $x \in f(S \cup T)$. Thus, $f(S)\cup f(T)\subseteq f(S\cup T)$.
+
+So we proved that this equation satisfies.
+
+\end{problem}
+\begin{problem}{\S 2.3: 44(b)}
+Let $f$ be a function from $A$ to $B$. Let $S$ and $T$ be subsets of $B$. Show that
+$f^{-1}(S \cap T) = f^{-1}(S) \cap f^{-1}(T)$.
+
+Solution:
+
+To prove the equation satisfies, we should prove both side are the subset of the other side, that is, $f^{-1}(S\cap T)\subseteq f^{-1}(S)\cap f^{-1}(T)$ 
+and $f^{-1}(S)\cap f^{-1}(T)\subseteq f^{-1}(S\cap T)$.
+
+First, suppose $x \in f^{-1}(S\cap T)$, than means $f(x)\in (S\cap T)$.
+By the definition of intersection, $f(x)\in S \land f(x)\in T$, that is, $x\in f^{-1}(S) \land x\in f^{-1}(T)$.
+Then, $x \in f^{-1}(S)\cap f^{-1}(T)$, so $f^{-1}(S\cap T)\subseteq f^{-1}(S)\cap f^{-1}(T)$.
+
+Second, suppose $x \in f^{-1}(S)\cap f^{-1}(T)$, by definition of intersection, $x\in f^{-1}(S) \land x\in f^{-1}(T)$.
+Then, $f(x)\in S \land f(x)\in T$, that is $f(x)\in S\cap T$, which means that $x \in f^{-1}(S\cap T)$
+So, $f^{-1}(S)\cap f^{-1}(T)\subseteq f^{-1}(S\cap T)$ has been proved. And the equation satisfies.
+\end{problem}
+\begin{problem}{\S 3.1: 2}
+Determine which characteristics of an algorithm described in the text the following
+procedures have and which they lack.
+\begin{enumerate}
+\item[(a)]
+\begin{verbatim}
+procedure double(n: positive integer)
+while n > 0
+n := 2n
+\end{verbatim}
+\item[(b)]
+\begin{verbatim}
+procedure divide(n: positive integer)
+while n >= 0
+m : = 1/n
+n := n-1
+\end{verbatim}
+\item[(c)]
+\begin{verbatim}
+procedure sum(n: positive integer)
+sum := 0
+while i < 10
+sum := sum + i
+\end{verbatim}
+\item[(d)]
+\begin{verbatim}
+procedure choose(a,b: integers)
+x := either a or b
+\end{verbatim}
+
+Solution:
+\item[(a)] Not finite, since execution of the while loop continues forever.
+\item[(b)] Not effective, because the step m := 1/n cannot be performed when n = 0
+\item[(c)] Lacks definiteness, since the value of i is never set.
+\item[(d)] Lacks definiteness, since the statement does not tell whether x is to be set equal to a or b.
+
+
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 3.1: 24}
+Describe an algorithm that determines whether a function from a finite set to
+another finite set is one-to-one.
+
+Solution is at the last page of this PDF.
+\end{problem}
+\begin{algorithm}[b]
+    \caption{Algorithm of Problem \S 3.1:24}
+    \label{alg:AOS}
+    \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+    \renewcommand{\algorithmicensure}{\textbf{Output:}}
+    
+    \begin{algorithmic}[1]
+        \REQUIRE function $f$, finite set $A=\{a_1, a_2,a_3,...a_n\}$, finite set $B\{b_1, b_2,b_3,...b_m\}$(This is Inputs)
+        \ENSURE oneOnOne(This is Outputs)    %%output
+        \FOR{$i:=1$ to m}
+            \STATE$list(b_i)$=1
+        \ENDFOR
+        
+        \FOR{$j:=1$ to n}
+            \STATE$list(f(a_j))-1$
+        \ENDFOR
+        \STATE oneOnOne = true
+        \FOR{$k:=1$ to q}
+            \IF{$list(b_q)\neq 1$ or $list(b_q)\neq 0$}
+                \STATE{oneOnOne = false}
+            \ENDIF
+        \ENDFOR
+        
+        
+        \RETURN oneOnOne
+    \end{algorithmic}
+\end{algorithm}
+\begin{problem}{\S 3.1: 52(a,d)}
+Use the greedy algorithm to make change using quarters, dimes, nickels, and pennies
+for
+\begin{enumerate}
+\item[(a)] 87 cents.
+\item[(d)] 33 cents.
+
+Solution:
+87-25=62, 62$\geq$0, a quarter returns. 62-25=37, 37$\geq$0, a quarter returns. 37-25=12, 12$\geq$0, a quarter returns.
+ 12-25=-13, -13$\textless$0, check dimes.
+12-10=2, 2$\geq$0, a dime returns. 2-10=-8, -8$\textless$0, start checking nickels. 2-5=-3, -3$\textless$0, start checking pennies.
+2-1=1, 1$\geq$0, a pennies returns. 1-1=0, 0$\geq$0, a pennies returns. 0-1=-1, -1$\textless$0,s stop returning.
+
+33-25=8, 8$\geq$0, a quarter returns. 8-25=-17, -17$\textless$0, start checking dimes.
+8-10=-2, -2$\textless$0, start checking nickels. 8-5=3, 3$\geq$0, return a nickel. 3-5=-2, -2$\textless$0, start checking pennies.
+3-1=2, 2$\geq$0, a pennies returns. 2-1=1, 1$\geq$0, a pennies returns. 1-1=0, 0$\geq$0, a pennies returns. 0-1=-1, -1$\textless$0,s stop returning.
+
+\end{enumerate}
+\end{problem}
+\begin{algorithm}[]
+    \caption{Algorithm of Problem \S 3.1:52}
+    \label{alg:AOS}
+    \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+    \renewcommand{\algorithmicensure}{\textbf{Output:}}
+    
+    \begin{algorithmic}[1]
+        \REQUIRE $cents$ %%input
+        \ENSURE $quarters$, $dimes$, $nickels$, $pennies$    %%output
+        \STATE $quarters:=0$, $dimes:=0$, $nickels:=0$, $pennies:=0$
+        \WHILE{$cents-15\geq 0$}
+            \STATE $quarters+1$
+        \ENDWHILE
+        \WHILE{$cents-10\geq 0$}
+            \STATE $dimes+1$
+        \ENDWHILE
+        \WHILE{$cents-5\geq 0$}
+        \STATE $nickels+1$
+        \ENDWHILE
+        \WHILE{$cents-1\geq 0$}
+            \STATE $pennies+1$
+        \ENDWHILE
+    
+        
+        \RETURN $quarters$, $dimes$, $nickels$, $pennies$
+    \end{algorithmic}
+\end{algorithm}
+\begin{problem}{\S 3.1: 54(a,d)}
+Use the greedy algorithm to make change using quarters, dimes, and pennies (but no
+nickels) for
+\begin{enumerate}
+\item[(a)] 87 cents.
+\item[(d)] 33 cents.
+
+Solution:
+87-25=62, 62$\geq$0, a quarter returns. 62-25=37, 37$\geq$0, a quarter returns. 37-25=12, 12$\geq$0, a quarter returns.
+ 12-25=-13, -13$\textless$0, check dimes.
+12-10=2, 2$\geq$0, a dime returns. 2-10=-8, -8$\textless$0, start checking pennies. 
+2-1=1, 1$\geq$0, a pennies returns. 1-1=0, 0$\geq$0, a pennies returns. 0-1=-1, -1$\textless$0,s stop returning.
+
+33-25=8, 8$\geq$0, a quarter returns. 8-25=-17, -17$\textless$0, start checking dimes.
+8-10=-2, -2$\textless$0, start checking pennies.
+8-1=7, 7$\geq$0, a pennies returns. 7-1=6, 6$\geq$0, a pennies returns. 6-1=5, 5$\geq$0, a pennies returns. 5-1=4, 4$\geq$0, a pennies returns. 4-1=3, 3$\geq$0, a pennies returns. 3-1=2, 2$\geq$0, a pennies returns. 2-1=1, 1$\geq$0, a pennies returns. 1-1=0, 0$\geq$0, a pennies returns. 0-1=-1, -1$\textless$0,s stop returning.
+\end{enumerate}
+\end{problem}
+\begin{algorithm}[]
+    \caption{Algorithm of Problem \S 3.1:54}
+    \label{alg:AOS}
+    \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+    \renewcommand{\algorithmicensure}{\textbf{Output:}}
+    
+    \begin{algorithmic}[1]
+        \REQUIRE $cents$ %%input
+        \ENSURE $quarters$, $dimes$, $nickels$, $pennies$    %%output
+        \STATE $quarters:=0$, $dimes:=0$, $nickels:=0$, $pennies:=0$
+        \WHILE{$cents-15\geq 0$}
+            \STATE $quarters+1$
+        \ENDWHILE
+        \WHILE{$cents-10\geq 0$}
+            \STATE $dimes+1$
+        \ENDWHILE
+        
+        \WHILE{$cents-1\geq 0$}
+            \STATE $pennies+1$
+        \ENDWHILE
+    
+        
+        \RETURN $quarters$, $dimes$, $nickels$, $pennies$
+    \end{algorithmic}
+\end{algorithm}
+\end{document}

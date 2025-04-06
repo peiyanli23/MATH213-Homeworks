@@ -1,0 +1,223 @@
+\documentclass{article}
+%%%%%%%%%%%%%
+% Loads packages
+%%%%%%%%%%%%%
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{geometry} %package needed to set margins
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{listings}% http://ctan.org/pkg/listings
+\lstset{
+basicstyle=\ttfamily,
+mathescape
+}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\textbf{Homework 6}}
+\lhead{Math 213, Fall 2024}
+\rhead{Due Sunday, 10/13 at 11:59pm}
+%%%%%%%%%%%%%
+% Sets margins
+%%%%%%%%%%%%%
+\newgeometry{left=1.5in,right=1in,top=1in,bottom=1in}
+\setlength\headsep{3pt}
+%%%%%%%%%%%%%
+% Creates problem and solution environments
+%%%%%%%%%%%%%
+% Solution Environment
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+% Problem Environment
+\newenvironment{problem}[1]
+{\begin{mdframed}[default]
+\textbf{Problem #1:}
+}
+{\end{mdframed}
+}
+%%%%%%%%%%%
+% Custom Commands
+%%%%%%%%%%%
+\newcommand{\gOne}{\cellcolor{green!50!white} 1}
+\newcommand{\rZero}{\cellcolor{red!50!white} 0}
+\begin{document}
+\begin{problem}{\S 7.1 - 27(a)}
+Find the probability of selecting exactly one of the correct six integers in a
+lottery, where the order in which these integers are selected does not matter, from
+the positive integers not exceeding 40.
+
+Solution:
+
+Since there are $6$ correct number in total, and the target is to choose $6$ number with $1$ correct and $5$ incorrect. Then the amount of possible combination to choose for the correct one is ${6\choose 1}$ and for choosing the rest $5$ incorrect is ${34\choose 5}$.
+And for all combinations there are ${40\choose 6}$ in total. So the probability should be \[P=\frac{{6\choose 1}{34\choose 5}}{{40\choose 6}}\]
+
+\end{problem}
+\begin{problem}{\S 7.1 - 36}
+Which is more likely: rolling a total of 8 when two dice are rolled or rolling a
+total of 8 when three dice are rolled? Show your work.
+
+Solution:
+
+For the condition of rolling two dice: The amount of condition rolling a total $8$ is $5$, which is $(2,6)$, $(3,5)$, $(4,4)$, $(5,3)$, $(6,2)$, and for all the possible combination, there are $36$ in total, so the probability should be $5/36\approx0.1388$.
+
+For the condition of rolling three dice: We first consider $x_1+x_2+x_3=8$ choosing all possible combination for $x_1$, $x_2$, $x_3$ since all $x$ at least be $1$, simplify as choosing all possible non-negative combination for $x_1+x_2+x_3=5$ there will be ${3+5-1\choose 2}={7 \choose 2}=21$.
+And there will be $6^3=216$ in total, so probability should be $21/216\approx0.0972$.
+
+In conclusion, two dice is more possible.
+
+
+\end{problem}
+\begin{problem}{\S 7.2 - 8(a,c,d)}
+What is the probability of these events when we randomly select a permutation of $\{ 1, 2, \dots, n \}$ where $n \geq 4$?
+\begin{enumerate}
+\item[(a)] 1 precedes 2.
+\item[(c)] 1 immediately precedes 2.
+\item[(d)] $n$ precedes 1 and $n-1$ precedes 2.
+
+Solution:
+(a) Since the selection is random, and there are only two ways that 1 precedes 2 or 2 precedes 1, so the probability should be $1/2$
+
+(c) As 1 immediately precedes 2, take $(1,2)$ as a package, than there will be $(n-1)!$ total ways to get it, and for the total way of all permutation is $n!$, so the probability should be $\frac{(n-1)!}{n!}=1/n$
+
+(d) There are two relative position of $n$ and $1$ as well as $(n-1)$ and $2$, and to achieve each of them has probability of $1/2$, and to achieve both of them, the probability will be $1/4$.
+
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 7.2 - 18}
+\begin{enumerate}
+\item[(a)] What is the probability that two people chosen at random were born
+on the same day of the week?
+\item[(b)] What is the probability that in a group of $n$ people chosen at
+random, there are at least two born on the same day of the week?
+\item[(c)] How many people chosen at random are needed to make the probability
+greater than $1/2$ that there are at least two people born on the same day of the
+week?
+
+Solution:
+
+(a) There are $1/7$ probability for one people to born at each day in a week, and for another person it has same probability of $1/7$. To make two people born in a same day, it's second people choosing the day when first people born, so the probability is $1/7$
+
+(b) The probability for every one not born in same day is \[p_n=\frac{6}{7}\cdot\frac{5}{7}\cdot\frac{4}{7}\cdot\frac{3}{7}\cdot\frac{2}{7}\cdot\frac{1}{7}\] And it is for $n\leq 7$, for $n\geq 8$, the $P_n=0$ for none of every one born in same day (By pigeonhole principle).
+So, we have probability for $n$ people born in one day: \[P=\begin{cases}1-\frac{6}{7}\cdots\frac{8-n}{7}\quad n\leq 7\\1 \quad n\geq 8\end{cases}\]
+
+(c) Compute $1-p_n$ for all $n$, we can find that $n=4$ is the least number of people to achieve the probability of $1/2$, which is $P\approx 0.65$
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 7.2 - 24}
+What is the conditional probability that exactly four heads appear when a fair coin
+is flipped five times, given that the first flip came up tails?
+
+Solution:
+Set the condition four heads appear as $E$
+$P(E)=\frac{5}{32}$
+Set the condition first came tails as $F$
+$P(F)=\frac{1}{2}$
+Then, $P(E\cap F)=1/32$
+Then, \[P(E|F)=\frac{P(E\cap F)}{P(F)}=1/16\]
+\end{problem}
+\begin{problem}{\S 7.2 - 30}
+Find the probability that a randomly generated bit string of length 10 does not
+contain a 0 if bits are independent and if
+\begin{enumerate}
+\item[(a)] a 0 bit and a 1 bit are equally likely.
+\item[(b)] the probability that a bit is 1 is 0.6.
+\item[(c)] the probability that the $i$th bit is a 1 is $1/2^i$ for $i = 1, 2,
+3, \dots, 10$.
+\end{enumerate}
+
+Solution:
+
+Set the condition that dose not contain zero as $E$
+
+(a) Since it is equally likely, the probability of having all $10$ digit to be zero is $P(E)=(1/2)^{10}$
+
+(b) Since the probability of having $1$ is $0.6$, the probability is $P(E)=0.6^{10}$
+
+(c) Since the probability for different digit is different, then for each digit, the probability for having $1$ is $1/{2^i}$, 
+Then the total probability of having $0$ is 
+\[P=\frac{1}{2}\cdot\frac{1}{2^2}\cdot\frac{1}{2^3}\cdot\frac{1}{2^4}\cdot\frac{1}{2^5}\cdot\frac{1}{2^6}\cdot\frac{1}{2^7}\cdot\frac{1}{2^8}\cdot\frac{1}{2^9}\cdot\frac{1}{2^{10}}\]
+
+\end{problem}
+\begin{problem}{\S 7.2 - 34}
+Find each of the following probabilities when $n$ independent Bernoulli trials are
+carried out with probability of success $p$.
+\begin{enumerate}
+\item[(a)] the probability of no successes.
+\item[(b)] the probability of at least one success.
+\item[(c)] the probability of at most one success.
+\item[(d)] the probability of at least two successes.
+\end{enumerate}
+
+Solution:
+
+(a) By the equation of Bernoulli trails: $P={n\choose k}{1-p}^{n-k}(p)^k$, for the probability of no success, we have $k=0$, then, $P={n\choose 0}(1-p)^{n-0}p^0=(1-p)^n$
+.
+
+(b) For at least one success, for the condition of no success, the probability is $p^n$, then, since the total probability must add up to one. 
+For at least one success, the probability must be $1-(1-p)^n$.
+
+(c) For the condition at most one success, the only probability is to have $0$ and $1$ success. For $1$ success, by the Bernoulli, we get ${n\choose 1}(1-p)^{n-1}p^1=n(1-p)^{n-1}p^1$
+And add two condition together: $P=n(1-p)^{n-1}p+(1-p)^n$.
+
+
+(d) For the condition at least two success, we do the minus, using 1 minus the condition of having $0$ $1$ success.
+The probability is: $P=1-n(1-p)^{n-1}p-(1-p)^n$.
+
+\end{problem}
+\begin{problem}{\S 7.2 - 36}
+Use mathematical induction to prove that if $E_1, E_2, \dots, E_n$ is a sequence of
+$n$ pairwise disjoint events in a sample space $S$, where $n$ is a positive
+integer, then
+\[ p\left( \cup_{i=1}^n E_i \right) = \sum_{i=1}^n p(E_i).\]
+
+For the base case, $n=2$, we have: $p(\cup_{i=1}^1 E_i)=\sum_{i=1}^1 p(E_i)=p(E_1\cup E_2)=p(E_1)+p(E_2)-p(E_1\cap E_2)$, and since disjoint, $p(E_1\cup E_2)=p(E_1)+p(E_2)$ so it is true in base case.
+
+For the inductive case, using strong induction, suppose $n<k$ are true, we are going to prove $n=k+1$ is true, which is: 
+\[ p\left( (\cup_{i=1}^k E_i)\cup E_{k+1} \right) = \sum_{i=1}^{k} p(E_i)+p(E_{k+1}).\]
+From the left side, by inductive hypothesis: \[p\left( (\cup_{i=1}^k E_i)\cup E_{k+1} \right)=P(\cup_{i=1}^k E_i)+P(E_{k+1})-P((\cup_{i=1}^k E_i)\cap E_{k+1})\]
+Since they are disjoint, $=P(\cup_{i=1}^k E_i)+P(E_{k+1})=\sum_{i=1}^{k} p(E_i)+P(E_{k+1})=rightside$
+Thus, the inductive case is satisfied, so the proposition is true.
+
+\end{problem}
+\begin{problem}{\S 7.3 - 2}
+Suppose that $E$ and $F$ are events in a sample space and $p(E) = 2/3$, $p(F) =
+3/4$, and $p(F~|~E) = 5/8$. Find $p(E~|~F)$.
+
+Solution:
+
+$p(E|F)=p(E\cap F)/p(F)$, since $p(F|E)=p(E\cap F)/p(E)=5/8$, and $p(E)=2/3$, so $p(E\cap F)=5/12$, then:
+$p(E|F)=p(E\cap F)/p(F)=\frac{5/12}{3/4}=5/9$
+\end{problem}
+\begin{problem}{\S 7.3 - 8}
+Suppose that one person in 10,000 people has a rare genetic disease. There is an
+excellent test for the disease; 99.9\% of people with the disease test positive and
+only 0.02\% without the disease test positive.
+\begin{itemize}
+\item[(a)] What is the probability that someone who tests positive has the
+genetic disease?
+\item[(b)] What is the probability that someone who tests negative does not
+have the disease?
+\end{itemize}
+
+Solution:
+
+(a)Let F be the event that a person selected at random has the disease, and let $E$ be
+the event that a person selected at random tests positive for the disease. We want to compute
+$p(F | E)$. To use Bayes' theorem to compute $p(F | E)$ we need to find $p(E | F)$, $p(E | \Bar{F})$, $p(F)$,
+and $p(\Bar{F})$.
+
+We know that one person has the disease, so $P(F)=1/10000$, then, $P(\Bar{F})=1-1/10000$, Since for 99.9\% with the disease test positive, and 0.02\% test negative,
+$P(E|F)=99.9\%$, $P(E|\Bar{F})=0.02\%$, so by the Bayes' Theorem, \[P(F|E)=\frac{P(E|F)P(F)}{P(E|F)P(F)+P(E|\Bar{F})P(\Bar{F})}=\frac{0.999\times(1/10000)}{0.999\times(1/10000)+0.0002\times(1-1/10000)}\approx 0.333\]
+
+(b)Let $F$ be the event that does not have the disease, and $E$ be the event that people who test negative, and we want to find $P(F|E)$.
+From the question, we can know $P(F)=9999/10000$, then $P(\Bar{F})=1/10000$, and since for 99.9\% with disease test positive, and 0.02\% without disease test positive,
+we have $P(E|F)=1-0.0002$ and $P(E|\Bar{F})=1-0.999$
+So, By the Bayes Theorem, \[P(F|E)=\frac{(1-0.0002)0.9999}{(1-0.0002)0.9999+(1-0.999)(1/10000)}\approx 1.000\]
+
+\end{problem}
+\end{document}

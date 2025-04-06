@@ -1,0 +1,249 @@
+\documentclass{article}
+%%%%%%%%%%%%%
+% Loads packages
+%%%%%%%%%%%%%
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{geometry} %package needed to set margins
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{listings}% http://ctan.org/pkg/listings
+\lstset{
+basicstyle=\ttfamily,
+mathescape
+}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\textbf{Homework 3}}
+\lhead{Math 213, Fall 2024}
+\rhead{Due Sunday, 9/22 at 11:59pm}
+%%%%%%%%%%%%%
+% Sets margins
+%%%%%%%%%%%%%
+\newgeometry{left=1.5in,right=1in,top=1in,bottom=1in}
+\setlength\headsep{3pt}
+%%%%%%%%%%%%%
+% Creates problem and solution environments
+%%%%%%%%%%%%%
+% Solution Environment
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+% Problem Environment
+\newenvironment{problem}[1]
+{\begin{mdframed}[default]
+\textbf{Problem #1:}
+}
+{\end{mdframed}
+}
+%%%%%%%%%%%
+% Custom Commands
+%%%%%%%%%%%
+\newcommand{\gOne}{\cellcolor{green!50!white} 1}
+\newcommand{\rZero}{\cellcolor{red!50!white} 0}
+\begin{document}
+\begin{problem}{\S 5.2: 8}
+Suppose that a store offers gift certificates in denominations of $25$ and $40$
+dollars. Determine the possible total amounts you can form using these gift
+certificates. Prove your answer using strong induction.\newline
+
+
+Solution:
+
+The possible amounts of money we can obtain is $T=a\cdot25+b\cdot40$, where $a$ and $b$ are non-negative integer.
+By observation, we found that both $25$ and $40$ are multiplier of $5$, so let's set the total amounts of money we can get as $5n$ where $n$ is the number of $5$ in such number.
+for $n=5$, is $25$. for $n=8$, is $40$. for $n=10$, is $50$. for $n=13$, is $65$. for $n=15$, is $75$. for $n=16$, is $80$. for $n=18$, is $90$. for $n=20$, is $100$.
+for $n=21$, is $105$. for $n=23$, is $115$. for $n=24$, is $120$. for $n=25$, is $125$. for $n=26$, is $130$. for $n=28$, is $140$. for $n=29$, is $145$. for $n=30$, is $150$. for $n=31$, is $155$. for $n=32$, is $160$.
+
+Observe that for $n\geq28$, we can approach total amount of $T=5n$.
+
+Thus, set $P(n)$ as for $n\geq28$, we can approach total amount of $T=5n$.
+
+Basis step: $P(28)$: we can get it by $25+25+25+25+25+25+25+25+40$, so it is true.
+
+Assume the inductive hypothesis, that $P(j)$ is true for all $j$ with $28\leq j\leq k$ where $k\geq 32$ then $k+1$ is true.
+Since $k-4\geq 28$ so $P(k-4)$ is true, thus we can form $5k-20$ amount of money, then we add $25$ to it, we can get $5(k+1)$ amount of money. Thus, $P(k+1)$ is true.
+The induction step satisfies. 
+
+\end{problem}
+\begin{problem}{\S 5.2: 10}
+Assume that a chocolate bar consists of $n$ squares arranged in a rectangular
+pattern. The entire bar, a smaller rectangular piece of the bar, can be broken
+along on a vertical or horizontal line separating the squares. Assuming that only
+one piece can be broken at a time, determine how many breaks you must successively
+make to break the bar into $n$ separate squares. Use strong induction to prove your
+answer.\newline
+
+Solution:
+
+Proposition: It takes $n-1$ breaks to separate it into $n$ squares. 
+
+For the basis step, $n=1$ it does not need any break to have $1$ square appear. It is true.
+
+For the inductive step, assume the proposition is true for $1\leq k\leq n$. Thus, for $k=n+1$, when we are breaking it, for the first time, we may get two situation.
+The first situation is a bar with $a$ squares and a bar with $b$ squares; and the second situation is get a square and a bar with n squares.
+For the first situation, by the inductive hypothesis, bar containing $a$ and $b$ can be break down by $a-1$ and $b-1$ time. And for the second situation, it can be break down by $n-1$ time.
+And for both case, we calculate the total time of breaking down is $(a-1)+(b-1)+1=n$ and $(n-1)+1=n$.
+Both are $n$ time, consists with the $P(n+1)$ that it should take $(n+1)-1=n$ step to breaking down.
+
+\end{problem}
+\begin{problem}{\S 6.1: 8}
+How many different three-letter initials with none of the letters repeated can
+people have?
+
+Solution:
+
+Since is a three letters initials and none of letters repeated. We first assume the letters are English characters, which is 26 in total.
+Then, the total amount of the different three-letter initials will be $T=26\times25\times24=15600$.
+\end{problem}
+\begin{problem}{\S 6.1: 14}
+How many bit strings of length $n$, where $n$ is a positive integer, start and end
+with $1$s?
+
+Solution:
+Since the total length is $n$, and two of the bits are already $1$, the bit number we should deal with is $n-2$. And since it is bit strings, the type of digit on the bit is only $2$, which is $0$ and $1$.
+Then, the amount of variation should be $2^{n-2}$.
+
+\end{problem}
+\begin{problem}{\S 6.1: 16}
+How many strings are there of four lowercase letters that have the letter $x$ in
+them?
+
+Solution:
+To determine how many strings are there of four lowercase letters that have the letter $x$ in them, we can first calculate the number of string which does not contain $x$ in it and the total number of string containing no matter weather $x$ in or not, and do the minus.
+
+The total amount of string(no matter $x$ in or not):
+\[T_{all}=26^4=456976\]
+
+The amount of string does not containing $x$:
+\[T_{no}=25^4=390625\]
+
+The amount of string containing $x$:
+\[T_{all}-T_{no}=456976-390625=66351\]
+
+\end{problem}
+\begin{problem}{\S 6.1: 26}
+How many strings of four decimal digits
+\begin{enumerate}
+\item[(a)] do not contain the same digit twice?
+\item[(b)] end with an even digit?
+\item[(c)] have exactly three digits that are $9$s?
+
+Solution:
+
+(a) Since do not contain same digit twice, the total amount is $T=10\times9\times8\times7=5040$.
+
+(b) We first determine the possible amount of number appearing on the last digit is $5$, which is $0$, $2$, $4$, $6$. $8$.
+Then the total amount should be $T=10\times10\times10\times5=5000$.
+
+(c) There are four possible position for the digit that is not $9$ be, and there will be $9$ possible number to be there, than $T=4\times9=36$
+
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 6.1: 30}
+How many license plates can be made using either three uppercase English letters
+followed by three digits or four uppercase English letters followed by two digits?
+
+Solution:
+
+The total amount of possible combination for first type of license is $T_{1}=26^3\times10^3=17576\times1000$.
+The total amount of possible combination for second type of license is $T_{middle}=26^4\times10^2=456976\times100$.
+Total: $T=63273600$.
+\end{problem}
+\begin{problem}{\S 6.1: 36}
+How many functions are there from the set $\{1, 2, \dots, n \}$, where $n$ is a
+positive integer, to the set $\{ 0, 1 \}$?
+
+Solution:
+
+There are $2^n$, since every elements in the set $\{1,2,\dots ,n\}$ has two choice.
+
+\end{problem}
+\begin{problem}{\S 6.1: 37}
+How many functions are there from the set $\{ 1, 2, \dots, n \}$, where $n$ is a
+positive integer, to the set $\{ 0, 1 \}$
+\begin{enumerate}
+\item[(a)] that are one-to-one?
+\item[(b)] that assign $0$ to both $1$ and $n$?
+\item[(c)] that assign $1$ to exactly one of the positive integers less than
+$n$?
+
+Solution:
+
+(a) There are no one-to-one function since the domain set is larger than the mapped set.
+
+(b) The map of two element in the domain is already certify, then, the amount of possible functions for rest of the elements should be $T=2^{n-2}$.
+
+(c) For this question, the amount of possible number that can be assign to $1$ is $n-1$, and for $n$ there are two possibility. So the total amount should be $2\cdot(n-1)$
+\end{enumerate}
+\end{problem}
+\begin{problem}{\S 6.1: 40}
+How many subsets of a set with $100$ elements have more than one element?
+
+Solution:
+For any set with n elements, the total number of possible subsets is 
+$2^n$. This is because for each element in the set, there are two choices:
+
+Include the element in a subset.
+Exclude the element from a subset.
+Since these choices are independent for each element, the total number of combinations (subsets) is calculated by multiplying the number of choices for each element.
+Since there are $100$ set with one element, and a empty set which is the subset of all the set. The total number should be $T=2^{100}-101$
+\end{problem}
+\begin{problem}{\S 6.1: 44}
+How many ways are there to seat four of a group of ten people around a circular
+table where two seatings are considered the same when everyone has the same
+immediate left and immediate right neighbor?
+
+Solution:
+
+The amount of possible combination for choosing $4$ people from $10$ is $T=10\times9\times8\times7=5040$.
+
+And since when rotate, it considered as one combination, than divided by $4$
+Then, the total amount of possible combination should be $T=5040/4=1260$.
+\end{problem}
+\begin{problem}{\S 6.2: 2}
+Show that if there are 30 students in a class, then at least two have last names
+that begin with the same letter.
+
+Solution:
+
+Since there are only 26 English characters, and the set with 26 items project to a set with 30 items must not be one to one, so it follows pigeonhole principle.
+\end{problem}
+\begin{problem}{\S 6.2: 6}
+Let $d$ be a positive integer. Show that among any group of $d+1$ (not necessarily
+consecutive) integers there are two with exactly the same remainder when they are
+divided by $d$.
+
+Solution:
+
+Since there are only $d$ possible remainder when divided by $d$, then, by the pigeonhole principle, for a set with $d+1$ item, there must be at least 2 has the same remainder.
+\end{problem}
+\begin{problem}{\S 6.2: 8}
+Show that if $f$ is a function from $S$ to $T$, where $S$ and $T$ are finite sets
+with $|S| > |T|$, then there are elements $s_1$ and $s_2$ in $S$ such that $f(s_1)
+= f(s_2)$, or in other words, $f$ is not one-to-one.
+
+Solution:
+
+Since the number of element of set $S$ is greater than number of element of set $T$, by pigeonhole principle, the function projecting $S$ to $T$ must not be one to one. $(k=|T|)$
+\end{problem}
+\begin{problem}{\S 6.2: 14}
+\begin{enumerate}
+\item[(a)] Show that if seven integers are selected from the first 10 positive
+integers, there must be at least two pairs of these integers with the sum 11.
+\item[(b)] Is the conclusion in (a) true if six integers are selected rather
+than seven?
+
+Solution:
+
+(a) There are $5$ possible combination in first $10$ integer whose sum is $11$, which are $\{1,10\}$, $\{2,9\}$, $\{3,8\}$, $\{4,7\}$, $\{5,6\}$. To select $7$ number from the set of first $10$ positive integer. By the pigeonhole principle, at least 2 pairs will belong to the subset whose sum is $11$.
+
+(b) No, since there only selected $6$ numbers, by the pigeonhole principle, only at least one will from the subset with sum $11$, but not $2$.
+
+\end{enumerate}
+\end{problem}
+\end{document}
