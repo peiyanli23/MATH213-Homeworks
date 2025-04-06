@@ -1,0 +1,258 @@
+\documentclass{article}
+%%%%%%%%%%%%%
+% Loads packages
+%%%%%%%%%%%%%
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{geometry} %package needed to set margins
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{tikz}
+\usepackage{amsfonts}
+
+\usepackage{listings}% http://ctan.org/pkg/listings
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\textbf{Homework 7}}
+\lhead{Math 213, Fall 2024}
+\rhead{Due Sunday, 10/20 at 11:59pm}
+
+%%%%%%%%%%%%%
+% Sets margins
+%%%%%%%%%%%%%
+\newgeometry{left=1.5in,right=1in,top=1in,bottom=1in}
+\setlength\headsep{3pt}
+
+%%%%%%%%%%%%%
+% Creates problem and solution environments
+%%%%%%%%%%%%%
+
+% Solution Environment
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+% Problem Environment
+\newenvironment{problem}[1]
+    {\begin{mdframed}[default]
+    \textbf{Problem #1:}
+    }
+    {\end{mdframed}
+    }
+    
+%%%%%%%%%%%
+% Custom Commands
+%%%%%%%%%%%
+\newcommand{\gOne}{\cellcolor{green!50!white} 1}
+\newcommand{\rZero}{\cellcolor{red!50!white} 0}
+
+\begin{document}
+
+
+
+
+\begin{problem}{\S 8.1 - 12}
+\begin{itemize}
+    \item[(a)] Find a recurrence relation for the number of ways to climb $n$ stairs if the person climbing the stairs can take one, two, or three at a time.
+    \item[(b)] What are the initial conditions?
+    \item[(c)] In how many ways can this person climb a flight of eight stairs?
+\end{itemize}
+Solution:
+
+(a) For the condition of one at a time, there is $a_{n-1}$ ways; for the case of two at a time, there are $a_{n-2}$ ways, for the case of three at a time, there are $a_{n-3}$ ways.
+So, in total, there will be $a_n=a_{n-1}+a_{n-2}+a_{n-3}$
+
+(b) For the case of $n=0$, there are only one way is do nothing, so $a_0=1$. 
+For the case of $n=1$, there are only one way is climb one step, so $a_1=1$.
+For the case of $n=2$, there are two ways, one is climb two at once, and another is climb $1\times2$ time with one step each, so $a_2=2$.
+
+(c) $a_3=a_2+a_1+a_0=4$, $a_4=a_3+a_2+a_1=7$, $a_5=a_4+a_3+a_2=13$, $a_6=a_5+a_4+a_3=24$, $a_7=a_6+a_5+a_4=44$, $a_8=a_7+a_6+a_5=81$, So, for 8 steers there will be $81$ in total.
+
+
+
+\end{problem}
+
+\begin{problem}{\S 8.1 - 20}
+A bus driver pays all tolls, using only nickels and dimes, by throwing one coin at a time into the mechanical toll collector.
+\begin{itemize}
+    \item[(a)] Find a recurrence relation for the number of different ways the bus driver can pay a toll of $n$ cents (where the order in which the coins are used matters).
+    \item[(b)] In how many different ways can the driver pay a toll of 45 cents?
+\end{itemize}
+
+Solution:
+
+(a) Let $a_n$ be the number of ways the dirver can pay for $5n$ cents, and he can use a nickel and a dime for the first coin, if he uses nickel, there are $5(n-1)$ he need to pay remains, so there will be $a_{n-1}$ ways pay for the remaining. And if he uses dime to pay the first one, there will be $5(n-2)$ remains, and we have $a_{n-2}$ ways pay for it. So, total is $a_n=a_{n-1}+a_{n-2}$
+
+(b) With the initial condition: $a_0=1$ and $a_1=1$, we want to find when $n=9$
+Then, $a_2=a_1+a_0=2$, $a_3=a_1+a_2=3$, $a_4=a_2+a_3=5$, $a_5=a_3+a_4=8$, $a_6=a_4+a_5=13$, $a_7=a_5+a_6=21$, $a_8=a_6+a_7=34$, $a_9=a_7+a_8=55$
+
+Thus, there are total 55 ways pay for 45 cents.
+
+\end{problem}
+
+\begin{problem}{\S 8.1 - 26}
+\begin{itemize}
+    \item[(a)] Find a recurrence relation for the number of ways to completely cover a $2 \times n$ checkerboard with $1 \times 2$ dominoes.
+    \item[(b)] What are the initial conditions for the recurrence relation in part (a)?
+    \item[(c)] How many ways are there to completely cover a $2 \times 17$ checkerboard with $1 \times 2$ dominoes?
+\end{itemize}
+
+Solution:
+
+(a) For $a_0$, there are only one way is do nothing.
+For $a_1$, there is only one way is put a $1\times2$ block.
+For $a_2$, there are two ways, putting $1\times 2$ block in different direction.
+For $a_3$, there are 3 ways,
+For $a_4$, there are 5 ways.
+
+The recurrence relation is $a_n=a_{n-1}+a_{n-2}$
+
+(b) For $a_0$, there are only one way is do nothing.
+For $a_1=1$, there is only one way is put a $1\times2$ block.
+For $a_2=2$, there are two ways, putting $1\times 2$ block in different direction.
+
+(c) This is Fibonacci sequence, so, the answer is 2584.
+
+
+\end{problem}
+
+\begin{problem}{\S 8.2 - 2}
+Classify each recurrence relation by stating (i) whether it is linear or nonlinear, (ii) whether it is homogeneous or nonhomogeneous, (iii) its order, and (iv) if it has constant coefficients.
+\begin{itemize}
+    \item[(a)] $a_n = 3a_{n-2}$
+    \item[(b)] $a_n = 3$
+    \item[(c)] $a_n = a_{n-1}^2$
+    \item[(d)] $a_n = a_{n-1} + 2a_{n-3}$
+    \item[(e)] $a_n = a_{n-1}/n$
+    \item[(f)] $a_n = a_{n-1} + a_{n-2} + n + 3$
+    \item[(g)] $a_n = 4a_{n-2} + 5a_{n-4} + 9a_{n-7}$
+\end{itemize}
+
+Solution:
+\begin{itemize}
+    \item [(a)] This is a second order linear homogeneous equation with constant coefficients.
+    \item [(b)] This is a zero order linear nonhomogeneous equation with constant coefficients.
+    \item [(c)] This is a first order nonlinear homogeneous equation with constant coefficients.
+    \item [(d)] This is a third order linear homogeneous equation with constant coefficients.
+    \item [(e)] This is a first order linear homogeneous equation with non-constant coefficients.
+    \item [(f)] This is a second order linear non-homogeneous equation with constant coefficients.
+    \item [(g)] This is a seventh order linear homogeneous equation with constant coefficients.
+\end{itemize}
+\end{problem}
+
+\begin{problem}{\S 8.2 - 4(a,d,e)}
+Solve each recurrence relation along with the given initial conditions.
+\begin{itemize}
+    \item[(a)] $a_n = a_{n-1} + 6a_{n-2}$ for $n \geq 2$, $a_0 = 3$, $a_1 = 6$
+    \item[(d)] $a_n = 2a_{n-1} - a_{n-2}$ for $n \geq 2$, $a_0 = 4$, $a_1 = 1$
+    \item[(e)] $a_n = a_{n-2}$ for $n \geq 2$, $a_0 = 5$, $a_1 = -1$
+\end{itemize}
+
+Solution:
+
+(a) Characteristic equation: $r^2-r-6=0=(r-3)(r+2)$, Characteristic solutions: $r_1=3$, $r_2=-2$. The general solution: $a_n=w_13^n+w_2(-2)^n$. Substitute with initial value: \[\begin{cases}3=w_1+w_2\\6=3w_1-2w_2\end{cases}\]
+By solving the euqation, we get $w_1=12/5$ $w_2=3/5$. Then, $a_n=(12/5)3^n+(3/5)(-2)^n$
+
+(d)Characteristic equation: $r^2-2r+1=0=(r-1)^2$, Characteristic solutions: $r_1=1$, $r_2=1$. The general solution: $a_n=w_11^n+w_2n(1)^n$. Substitute with initial value: \[\begin{cases}4=w_1\\1=w_1+w_2\end{cases}\]
+By solving the euqation, we get $w_1=4$ $w_2=-3$. Then, $a_n=4(1)^n+(-3)n(1)^n=4-3n$.
+
+(e)Characteristic equation: $r^2-1=0=(r-1)(r+1)$, Characteristic solutions: $r_1=1$, $r_2=-1$. The general solution: $a_n=w_1(1)^n+w_2(-1)^n$. Substitute with initial value: \[\begin{cases}5=w_1+w_2\\-1=w_1-w_2\end{cases}\]
+By solving the euqation, we get $w_1=2$ $w_2=3$. Then, $a_n=2(1)^n+(3)(-1)^n=2+3(-1)^n$
+
+\end{problem}
+
+\begin{problem}{\S 8.2 - 28}
+\begin{itemize}
+    \item[(a)] Find all solutions of the recurrence relation $a_n = 2a_{n-1} + 2n^2$.
+    \item[(b)] Find all solutions of the recurrence relation in part (a) with initial condition $a_1 = 4$.
+\end{itemize}
+
+Solution:
+
+(a) Characteristic equation for general solution is: $2-r=0$, so, $a_{a(g)}=C_12^n$. And using undetermined coefficients, set particular solution as: $An^2+Bn+C$,
+Substitute into the equation: $An^2+Bn+C=2(A(n-1)^2+B(n-1)+C)+2n^2=A(2n^2-4n+2)+B(2n-2)+2C=n^2(2A+2)+n(-4A+2B)+2A-2B+2C$
+we get the relationship:\[\begin{cases}2A+2=A\\-4A+2B=B\\C=2A-2B+2C\end{cases}\]
+We get the solution: $A=-2$, $B=-8$, $C=-12$
+Thus, the general solution is \[a_n=C_12^n-2n^2-8n-12\]
+
+(b) Substitute the initial condition: $4=2C_1-2-8-12$, $C_1=13$, Then, \[a_n=(13)2^n-2n^2-8n-12\]
+
+\end{problem}
+
+\begin{problem}{\S 8.5 - 5}
+Find the number of elements in $A_1 \cup A_2 \cup A_3$ if there are 100 elements in each set and if
+\begin{itemize}
+    \item[(a)] the sets are pairwise disjoint.
+    \item[(b)] there are 50 common elements in each pair of sets and no elements in all three sets.
+    \item[(c)] there are 50 common elements in each pair of sets and 25 elements in all three sets.
+    \item[(d)] the sets are equal.
+\end{itemize}
+
+Solution:
+
+(a) $|A_1 \cup A_2 \cup A_3|=|A|+|B|+|C|-(|A\cap B|+|A\cap C|+|B\cap C|)+(|A\cap B\cap C)$, but since they are pairwise disjoint, $|A_1 \cup A_2 \cup A_3|=|A|+|B|+|C|=300$
+
+(b) $|A_1 \cup A_2 \cup A_3|=|A|+|B|+|C|-(|A\cap B|+|A\cap C|+|B\cap C|)+(|A\cap B\cap C)$, and since there are 50 common in pair of sets and no common in three sets, $|A_1 \cup A_2 \cup A_3|=100+100+100-50-50-50=150$
+
+(c) $|A_1 \cup A_2 \cup A_3|=|A|+|B|+|C|-(|A\cap B|+|A\cap C|+|B\cap C|)+(|A\cap B\cap C)$, and since there are 50 common in pair of sets and 25 common in three sets, $|A_1 \cup A_2 \cup A_3|=100+100+100-50-50-50+25=175$
+
+(d) $|A_1 \cup A_2 \cup A_3|=|A|+|B|+|C|-(|A\cap B|+|A\cap C|+|B\cap C|)+(|A\cap B\cap C)$, and since the sets are equal, meaning there are 100 in pairwise and 100 in three sets, $|A_1 \cup A_2 \cup A_3|=100+100+100-100-100-100+100=100$
+
+\end{problem}
+
+\begin{problem}{\S 8.5 - 10}
+Find the number of positive integers not exceeding 100 that are not divisible by 5 or 7.
+
+Solution:
+
+To find the number of positive integer not exceeding 100 that not divisible by 5 or 7, we can first find the numbers that divisible by 5 or 7 and using 100 to minus them
+which is $100-|A_5\cup A_7|$.
+
+First, find $A_5=20$, $A_7=14$, and for $|A_5\cap A_7|=2$
+Then: $T=100-|A_5\cup A_7|=100-(|A_5|+|A_7|-|A_5 \cap A_7|)=100-(20+14-2)=68$
+
+\end{problem}
+
+\begin{problem}{\S 8.5 - 14}
+How many permutations of the 26 letters of the English alphabet do not contain any of the strings \emph{fish}, \emph{rat}, or \emph{bird}?
+
+Solution:
+
+There are 26! strings in total. To count the strings that contain fish , we set this four letters together as one
+and permute it and the 22 other letters, so there are 23! in total. And there are 24! strings that
+contain rat and 23! strings that contain bird . And there are 21! strings that contain both fish and
+rat, but there are no strings that contain both bird and another
+of these strings. Thus, there are $T=26! - 23! - 24! - 23! + 21!$
+.
+\end{problem}
+
+\begin{problem}{\S 8.5 - 20}
+How many elements are in the union of five sets if the sets contain 10,000 elements each, each pair of sets has 1,000 common elements, each triple of sets has 100 common elements, every four of the sets have 10 common elements, and there is 1 element in all five sets?
+
+Solution:
+
+$|A_1\cup A_2\cup A_3\cup A_4\cup A_5|$
+
+There are $C(5,2)$ of two pair, so there are $\frac{5!}{2!3!}=10$ of $|A_n\cap A_{j, j\neq n}|$
+
+There are $C(5,3)=\frac{5!}{3!2!}=10$ of $|A_{n,n\neq j\neq k}\cap A_{j,j\neq n \neq k} \cap A_{k,k\neq n\neq j}|$
+
+There are $C(5,4)=\frac{5!}{4!1!}=5$ of $|A_{n,n\neq j\neq k\neq m}\cap A_{j,j\neq n \neq k\neq m} \cap A_{k,k\neq n\neq j\neq m}\cap A_{m, m\neq n\neq j\neq k}|$
+
+There are 1 of $|A_1\cap A_2\cap A_3\cap A_4\cap A_5|$
+
+So, $|A_1\cup A_2\cup A_3\cup A_4\cup A_5|=5\times 10000-(10\times 1000)+(10\times 100)-(5\times 10)+1=50000-10000+1000-50+1=40951$
+\end{problem}
+
+
+
+
+\end{document}
